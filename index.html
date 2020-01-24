@@ -247,8 +247,8 @@
                             <td><input type="number" style="width: 100%; color: red;" /></td>
                             <td><input type="number" style="width: 100%; color: green;" /></td>
                             <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td>5</td>
-                            <td>8</td>
+                            <td>1</td>
+                            <td>4</td>
                         </tr>
                         <tr class="row-game">
                             <td class="tdN">Pos</td>
@@ -283,8 +283,8 @@
                             <td><input type="number" style="width: 100%; color: red;" /></td>
                             <td><input type="number" style="width: 100%; color: green;" /></td>
                             <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td>9</td>
-                            <td>11</td>
+                            <td>1</td>
+                            <td>4.1</td>
                         </tr>
                         <tr class="row-game">
                             <td class="tdN">Pos</td>
@@ -301,7 +301,7 @@
                             <td><input type="number" style="width: 100%; color: red;" /></td>
                             <td><input type="number" style="width: 100%; color: green;" /></td>
                             <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td>1</td>
+                            <td>0</td>
                             <td>11</td>
                         </tr>
                     </tbody>
@@ -317,19 +317,22 @@
 
             $(document).on('click', 'th', function (event) {
 
+                //console.log($(this).index())
                 var table = $(this).parents('table').eq(0)
-                var rows = table.find('tr:gt(1)').toArray().sort(comparer($(this).index()))
-                
-                console.log(table.find('tr:gt(1)').toArray())
-                console.log(rows)
-
-                this.asc = !this.asc
+                var rowsJueGan = table.find('tr:gt(1)').toArray().sort(comparer($(this).index() - 1))
+                rowsJueGan = rowsJueGan.reverse()
+                var rowsJueGanCopy = [...rowsJueGan]
+                var rowsAvg = rowsJueGanCopy.sort(comparerModificado($(this).index()))                
+                //console.log(table.find('tr:gt(1)').toArray())
+                console.log(rowsJueGan)
+                console.log(rowsAvg)                
+                //this.asc = !this.asc
                 //console.log(this)
-                if (!this.asc) {
-                    rows = rows.reverse()
-                }
-                for (var i = 0; i < rows.length; i++) {
-                    table.append(rows[i])
+                //if (!this.asc) {
+                
+                //}
+                for (var i = 0; i < rowsAvg.length; i++) {
+                    table.append(rowsAvg[i])
                 }
             })
 
@@ -395,10 +398,24 @@
                 return function (a, b) {
                     var valA = getCellValue(a, index),
                         valB = getCellValue(b, index),
-                        valC = getCellValue(a, index-1),
-                        valD = getCellValue(b, index-1)
-                        console.log(valA , valB, valC, valD)
+                        valC = getCellValue(a, index + 1),
+                        valD = getCellValue(b, index + 1)
+                    console.log(valA, valB, valC, valD)
                     return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+                }
+            }
+
+            function comparerModificado(index) {
+                return function (a, b) {
+                    var valA = getCellValue(a, index),
+                        valB = getCellValue(b, index),
+                        valC = getCellValue(a, index - 1),
+                        valD = getCellValue(b, index - 1)
+                    console.log(valA, valB, valC, valD)
+                    if (valC === valD) {
+                        return $.isNumeric(valA) && $.isNumeric(valB) ? valB  - valA : valA.localeCompare(valB)
+                    }
+                    return 0;
                 }
             }
 
