@@ -201,7 +201,7 @@
     <div>
         <div>
             <div>
-                <table id="tabla-super-polla">
+                <table id="tabla-super-polla" data-ronda-en-juego="1">
                     <thead>
                         <tr id="ronda-juego">
                             <th colspan="4"></th>
@@ -228,81 +228,141 @@
                             <th class="tdG" title="Puntos a Fabor.">F</th>
                             <th class="tdG" title="Puntos en Contra.">C</th>
                             <th class="tdV">J/G</th>
-                            <th class="tdG">AVG</th>
+                            <th id="head-avg" class="tdG">AVG</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
-                            <td class="tdG">Nombre</td>
+                            <td class="tdG"><select>
+                                    <option>Andres</option>
+                                    <option>Jose</option>
+                                    <option>Maria</option>
+                                    <option>Pedro</option>
+                                </select></td>
                             <td>No.</td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
+                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td data-ronda="1" data-puntos="F">
+                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td data-ronda="1" data-puntos="C">
+                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
                             <td>1</td>
                             <td>4</td>
                         </tr>
                         <tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
-                            <td class="tdG">Nombre</td>
+                            <td class="tdG"><select>
+                                    <option>Andres</option>
+                                    <option>Jose</option>
+                                    <option>Maria</option>
+                                    <option>Pedro</option>
+                                </select></td>
                             <td>No.</td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
+                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td data-ronda="1" data-puntos="F">
+                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td data-ronda="1" data-puntos="C">
+                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
                             <td>2</td>
                             <td>3</td>
                         </tr>
                         <tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
-                            <td class="tdG">Nombre</td>
+                            <td class="tdG"><select>
+                                    <option>Andres</option>
+                                    <option>Jose</option>
+                                    <option>Maria</option>
+                                    <option>Pedro</option>
+                                </select></td>
                             <td>No.</td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
+                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td data-ronda="1" data-puntos="F">
+                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td data-ronda="5" data-puntos="C">
+                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
                             <td>1</td>
                             <td>4.1</td>
                         </tr>
                         <tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
-                            <td class="tdG">Nombre</td>
+                            <td class="tdG"><select>
+                                    <option>Andres</option>
+                                    <option>Jose</option>
+                                    <option>Maria</option>
+                                    <option>Pedro</option>
+                                </select></td>
                             <td>No.</td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
-                            <td><input type="number" style="width: 100%; color: green;" /></td>
-                            <td><input type="number" style="width: 100%; color: red;" /></td>
+                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td data-ronda="1" data-puntos="F">
+                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td data-ronda="5" data-puntos="C">
+                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
+                                    disabled /></td>
+                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
+                                    disabled /></td>
                             <td>0</td>
-                            <td>11</td>
+                            <td>1</td>
                         </tr>
                     </tbody>
                 </table>
@@ -310,34 +370,31 @@
         </div>
 
 
-        <button id="item-add" type="button" class="btn btn-success">Success</button>
+        <button id="button-add" type="button" class="btn btn-success">Success</button>
+        <button id="button-order" type="button" class="btn btn-warning">Order</button>
+        <button id="button-start" type="button" class="btn btn-prymary">Iniciar Ronda</button>
 
 
         <script>
 
-            $(document).on('click', 'th', function (event) {
+            $(document).on('click', '#button-order', function (event) {
+                let table = $('table#tabla-super-polla')
 
-                //console.log($(this).index())
-                var table = $(this).parents('table').eq(0)
-                var rowsJueGan = table.find('tr:gt(1)').toArray().sort(comparer($(this).index() - 1))
+                let headAvg = document.getElementById("head-avg");
+
+                let avg = $('table#tabla-super-polla thead #ronda-Puntos th').index(headAvg)
+
+                var rowsJueGan = table.find('tr:gt(1)').toArray().sort(comparer(avg - 1))
                 rowsJueGan = rowsJueGan.reverse()
                 var rowsJueGanCopy = [...rowsJueGan]
-                var rowsAvg = rowsJueGanCopy.sort(comparerModificado($(this).index()))                
-                //console.log(table.find('tr:gt(1)').toArray())
-                console.log(rowsJueGan)
-                console.log(rowsAvg)                
-                //this.asc = !this.asc
-                //console.log(this)
-                //if (!this.asc) {
-                
-                //}
+                var rowsAvg = rowsJueGanCopy.sort(comparerModificado(avg))
+
                 for (var i = 0; i < rowsAvg.length; i++) {
                     table.append(rowsAvg[i])
                 }
             })
 
             $(document).on('change', '#select-ronda', function (event) {
-
                 if (event.target.value) {
                     for (var i = 6; i <= event.target.value; i++) {
                         let count = $("#ronda-Puntos").children().length - 2
@@ -356,25 +413,39 @@
                 }
             })
 
+            $(document).on('click', '#button-start', function (event) {
+
+                let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')
+
+                $.each(row, function (index, value) {
+                    console.log($(this)[0])
+                    //console.log($(this)[0].cells[4].dataset.ronda)
+                    console.log($(this)[0].cells[4].children[0].disabled = false)
+                    console.log($(this)[0].cells[5].children[0].disabled = false)
+                    console.log($(this)[0].cells[4].children[0].focus())
+                    //console.log(index)                    
+                });
+
+            })
 
 
-            $(document).on('click', '#item-add', function (event) {
-                console.log($("#select-ronda").val())
+            $(document).on('click', '#button-add', function (event) {
+
                 let element = `<tr>
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
                             <td class="tdG">Nombre</td>
                             <td>No.</td>
-                            <td><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td><input type="number" style="width: 100%; color: red;" disabled/></td>
+                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
+                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
+                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
+                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
+                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
+                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
+                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
+                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
+                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
+                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
                             `;
 
                 if ($("#select-ronda").val()) {
@@ -384,13 +455,13 @@
                 }
 
 
-                element += `<td><strong>J/G</strong></td>
+                element += `<td>1</td>
                             <td>11</td>
                         </tr>`
 
-
+                $("p:nth-child(4)")
                 $('#tabla-super-polla tr:last').after((element).repeat(4))
-                console.log($('#tabla-super-polla tr:last'))
+                //console.log($('#tabla-super-polla tr:last'))
                 //$("p").append("Some appended text.");
             })
 
@@ -400,7 +471,7 @@
                         valB = getCellValue(b, index),
                         valC = getCellValue(a, index + 1),
                         valD = getCellValue(b, index + 1)
-                    console.log(valA, valB, valC, valD)
+                    //console.log(valA, valB, valC, valD)
                     return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
                 }
             }
@@ -411,9 +482,9 @@
                         valB = getCellValue(b, index),
                         valC = getCellValue(a, index - 1),
                         valD = getCellValue(b, index - 1)
-                    console.log(valA, valB, valC, valD)
+                    //console.log(valA, valB, valC, valD)
                     if (valC === valD) {
-                        return $.isNumeric(valA) && $.isNumeric(valB) ? valB  - valA : valA.localeCompare(valB)
+                        return $.isNumeric(valA) && $.isNumeric(valB) ? valB - valA : valA.localeCompare(valB)
                     }
                     return 0;
                 }
