@@ -201,7 +201,7 @@
     <div>
         <div>
             <div>
-                <table id="tabla-super-polla" data-ronda-en-juego="1">
+                <table id="tabla-super-polla" data-ronda-en-juego="0">
                     <thead>
                         <tr id="ronda-juego">
                             <th colspan="4"></th>
@@ -369,15 +369,29 @@
             </div>
         </div>
 
+        <button id="button-add" type="button" class="btn btn-success">Success 1</button>
+        <button id="button-mix" type="button" class="btn btn-prymary">Mezclar 2</button>
+        <button id="button-start" type="button" class="btn btn-prymary">Iniciar Ronda 3</button>
 
-        <button id="button-add" type="button" class="btn btn-success">Success</button>
-        <button id="button-order" type="button" class="btn btn-warning">Order</button>
-        <button id="button-start" type="button" class="btn btn-prymary">Iniciar Ronda</button>
-
+        <button id="button-order" type="button" class="btn btn-warning">Order 4</button>
 
         <script>
 
             $(document).on('click', '#button-order', function (event) {
+
+                let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
+                let cell = 2 * juego + 2
+
+                let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')            
+                $.each(row, function (index, value) {
+                    $(this)[0].cells[cell].children[0].disabled = true
+                    $(this)[0].cells[cell + 1].children[0].disabled = true       
+                    $(this)[0].classList.remove("line-writer")             
+                    console.log($(this)[0].cells[cell].children[0].classList.remove("input-puntos"))
+                    console.log($(this)[0].cells[cell + 1].children[0].classList.remove("input-puntos"))
+                });
+
+
                 let table = $('table#tabla-super-polla')
 
                 let headAvg = document.getElementById("head-avg");
@@ -392,6 +406,8 @@
                 for (var i = 0; i < rowsAvg.length; i++) {
                     table.append(rowsAvg[i])
                 }
+
+
             })
 
             $(document).on('change', '#select-ronda', function (event) {
@@ -405,8 +421,9 @@
                         const elementRowGame = `<th class="tdG" title="Puntos a Fabor.">F</th><th class="tdG" title="Puntos en Contra.">C</th>`
                         $("#ronda-Puntos th:nth-child(" + count + ")").after(elementRowGame)
 
-                        const elementRowPoint = `<td><input type="number" style="width: 100%; color: green;"></td><td><input type="number" style="width: 100%; color: red;"></td>`
+
                         $.each($(".row-game td:nth-child(" + count + ")"), function (index, value) {
+                            const elementRowPoint = `<td data-ronda="${i}" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled></td><td data-ronda="${i}" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled></td>`
                             $(this).after(elementRowPoint)
                         });
                     }
@@ -415,23 +432,46 @@
 
             $(document).on('click', '#button-start', function (event) {
 
+                $("#tabla-super-polla")[0].dataset.rondaEnJuego = parseInt($("#tabla-super-polla")[0].dataset.rondaEnJuego) + 1
+                let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
+                let cell = 2 * juego + 2
+
                 let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')
 
                 $.each(row, function (index, value) {
-                    console.log($(this)[0])
                     //console.log($(this)[0].cells[4].dataset.ronda)
-                    console.log($(this)[0].cells[4].children[0].disabled = false)
-                    console.log($(this)[0].cells[5].children[0].disabled = false)
-                    console.log($(this)[0].cells[4].children[0].focus())
-                    //console.log(index)                    
+                    $(this)[0].cells[cell].children[0].disabled = false
+                    $(this)[0].cells[cell + 1].children[0].disabled = false
+                    $(this)[0].classList.add("line-writer")
+                    console.log($(this)[0].cells[cell].children[0].classList.add("input-puntos"))
+                    console.log($(this)[0].cells[cell + 1].children[0].classList.add("input-puntos"))
                 });
+                $('table#tabla-super-polla tbody tr:nth-child( 1 )')[0].cells[cell].children[0].focus()
+            })
 
+            $(document).on('focusout', '.input-puntos', function (event) {
+
+                let punto = $(event.target.parentElement)[0].dataset.puntos
+                let puntuacion = event.target.value
+                let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
+                let cell = 2 * juego + 2
+                let impar = true
+                punto == "F" ? (impar = true) : (impar = false)
+
+                $.each($(event.target.parentElement.parentElement).nextUntil(".line-writer"), function (index, value) {
+
+                    (impar) ? cellNew = cell + 1 : cellNew = cell
+                    impar = !impar
+                    $(value).children()[cellNew].children[0].value = event.target.value
+                    //console.log($(value).children()[cell + 1].children[0])
+
+                });
             })
 
 
             $(document).on('click', '#button-add', function (event) {
 
-                let element = `<tr>
+                let line = `<tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
                             <td class="tdG">Nombre</td>
@@ -448,21 +488,18 @@
                             <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
                             `;
 
+
                 if ($("#select-ronda").val()) {
                     for (var i = 6; i <= $("#select-ronda").val(); i++) {
-                        element += `<td><input type="number" style="width: 100%; color: green;" disabled/></td><td><input type="number" style="width: 100%; color: red;" disabled/></td>`
+                        line += `<td data-ronda="${i}" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
+                                 <td data-ronda="${i}" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>`
                     }
                 }
-
-
-                element += `<td>1</td>
+                line += `<td>1</td>
                             <td>11</td>
                         </tr>`
 
-                $("p:nth-child(4)")
-                $('#tabla-super-polla tr:last').after((element).repeat(4))
-                //console.log($('#tabla-super-polla tr:last'))
-                //$("p").append("Some appended text.");
+                $('#tabla-super-polla tr:last').after(line.repeat(4))
             })
 
             function comparer(index) {
@@ -493,6 +530,33 @@
             function getCellValue(row, index) {
                 return $(row).children('td').eq(index).html()
             }
+
+            $(document).on('click', '#button-mix', function (event) {
+                let table = $('table#tabla-super-polla tbody')[0]
+
+                //1. get all rows
+                let rowsCollection = $('table#tabla-super-polla tbody tr')
+
+                //2. convert to array
+                let rows = Array.from(rowsCollection)
+
+                //3. shuffle
+                shuffleArray(rows);
+
+                //4. add back to the DOM
+                for (const row of rows) {
+                    table.appendChild(row);
+                }
+            })
+            function shuffleArray(array) {
+                for (var i = array.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+
 
         </script>
 
