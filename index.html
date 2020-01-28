@@ -10,7 +10,15 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
     <style type="text/css">
         body {
             color: #8b8b8b;
@@ -58,43 +66,18 @@
             text-align: center;
         }
 
-        .Med90 {
-            width: 100%;
-            font-size: 16px;
-            text-align: center;
-        }
-
         .nombreJG {
             width: 100%;
         }
 
         .PuntosC {
             color: red;
+            width: 100%;
         }
 
         .PuntosF {
             color: green;
-        }
-
-        .rotate1 {
-            display: inline-block;
-            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-            -webkit-transform: rotate(270deg);
-            -ms-transform: rotate(270deg);
-            transform: rotate(270deg);
-        }
-
-        .rotate2 {
-            display: inline-block;
-            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-            -webkit-transform: rotate(-270deg);
-            -ms-transform: rotate(-270deg);
-            transform: rotate(-270deg);
-        }
-
-
-        .celdas:nth-child(odd) {
-            background: #f9f9f9;
+            width: 100%;
         }
 
         input {
@@ -180,15 +163,27 @@
             color: black;
         }
 
+        .container-table-player {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 70px;
+            border-radius: 5px;
+            padding: 0;
+            border: 1px solid black;
+            margin: 10px;
+        }
+
         /* ultimos estilos para los numeros y mesas */
     </style>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
 <body>
+
+    <script>
+        const options = ' <option value="1">Alberto</option><option value="2">Jose</option><option value="3">Maria</option><option value="4">Pedro</option><option value="5">Miguel</option><option value="6">Mariana</option><option value="7">Vicente</option><option value="8">Adolfo</option>'
+    </script>
 
     <select id="select-ronda">
         <option value="5">5</option>
@@ -198,367 +193,558 @@
     </select>
 
 
-    <div>
-        <div>
-            <div>
-                <table id="tabla-super-polla" data-ronda-en-juego="0">
-                    <thead>
-                        <tr id="ronda-juego">
-                            <th colspan="4"></th>
-                            <th colspan="2" class="tdV">Juego 1</th>
-                            <th colspan="2" class="tdV">Juego 2</th>
-                            <th colspan="2" class="tdV">Juego 3</th>
-                            <th colspan="2" class="tdV">Juego 4</th>
-                            <th colspan="2" class="tdV last-ronda-juego">Juego 5</th>
-                            <th colspan="2"></th>
-                        </tr>
-                        <tr id="ronda-Puntos">
-                            <th class="tdG">Pos.</th>
-                            <th class="tdG">Mesa</th>
-                            <th class="tdG">Nombre</th>
-                            <th class="tdG">No.</th>
-                            <th class="tdG" title="Puntos a Fabor.">F</th>
-                            <th class="tdG" title="Puntos en Contra.">C</th>
-                            <th class="tdG" title="Puntos a Fabor.">F</th>
-                            <th class="tdG" title="Puntos en Contra.">C</th>
-                            <th class="tdG" title="Puntos a Fabor.">F</th>
-                            <th class="tdG" title="Puntos en Contra.">C</th>
-                            <th class="tdG" title="Puntos a Fabor.">F</th>
-                            <th class="tdG" title="Puntos en Contra.">C</th>
-                            <th class="tdG" title="Puntos a Fabor.">F</th>
-                            <th class="tdG" title="Puntos en Contra.">C</th>
-                            <th class="tdV">J/G</th>
-                            <th id="head-avg" class="tdG">AVG</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="row-game">
-                            <td class="tdN">Pos</td>
-                            <td class="tdG">Mesa</td>
-                            <td class="tdG"><select>
-                                    <option>Andres</option>
-                                    <option>Jose</option>
-                                    <option>Maria</option>
-                                    <option>Pedro</option>
-                                </select></td>
-                            <td>No.</td>
-                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td data-ronda="1" data-puntos="F">
-                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td data-ronda="1" data-puntos="C">
-                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td>1</td>
-                            <td>4</td>
-                        </tr>
-                        <tr class="row-game">
-                            <td class="tdN">Pos</td>
-                            <td class="tdG">Mesa</td>
-                            <td class="tdG"><select>
-                                    <option>Andres</option>
-                                    <option>Jose</option>
-                                    <option>Maria</option>
-                                    <option>Pedro</option>
-                                </select></td>
-                            <td>No.</td>
-                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td data-ronda="1" data-puntos="F">
-                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td data-ronda="1" data-puntos="C">
-                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td>2</td>
-                            <td>3</td>
-                        </tr>
-                        <tr class="row-game">
-                            <td class="tdN">Pos</td>
-                            <td class="tdG">Mesa</td>
-                            <td class="tdG"><select>
-                                    <option>Andres</option>
-                                    <option>Jose</option>
-                                    <option>Maria</option>
-                                    <option>Pedro</option>
-                                </select></td>
-                            <td>No.</td>
-                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td data-ronda="1" data-puntos="F">
-                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td data-ronda="5" data-puntos="C">
-                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td>1</td>
-                            <td>4.1</td>
-                        </tr>
-                        <tr class="row-game">
-                            <td class="tdN">Pos</td>
-                            <td class="tdG">Mesa</td>
-                            <td class="tdG"><select>
-                                    <option>Andres</option>
-                                    <option>Jose</option>
-                                    <option>Maria</option>
-                                    <option>Pedro</option>
-                                </select></td>
-                            <td>No.</td>
-                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td data-ronda="1" data-puntos="F">
-                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td data-ronda="5" data-puntos="C">
-                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;"
-                                    disabled /></td>
-                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;"
-                                    disabled /></td>
-                            <td>0</td>
-                            <td>1</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#juego" role="tab" aria-controls="juego"
+                aria-selected="true">Juego</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#posiciones" role="tab"
+                aria-controls="posiciones" aria-selected="false">Posicion en Mesa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#puntaje" role="tab" aria-controls="puntaje"
+                aria-selected="false">Puntaje</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="juego" role="tabpanel" aria-labelledby="home-tab">
+            <table id="tabla-super-polla" data-ronda-en-juego="0">
+                <thead>
+                    <tr id="ronda-juego">
+                        <th colspan="4"></th>
+                        <th colspan="2" class="tdV">Juego 1</th>
+                        <th colspan="2" class="tdV">Juego 2</th>
+                        <th colspan="2" class="tdV">Juego 3</th>
+                        <th colspan="2" class="tdV">Juego 4</th>
+                        <th colspan="2" class="tdV last-ronda-juego">Juego 5</th>
+                        <th colspan="2"></th>
+                    </tr>
+                    <tr id="ronda-Puntos">
+                        <th class="tdG">Pos.</th>
+                        <th class="tdG">Mesa</th>
+                        <th class="tdG">Nombre</th>
+                        <th class="tdG">No.</th>
+                        <th class="tdG" title="Puntos a Fabor.">F</th>
+                        <th class="tdG" title="Puntos en Contra.">C</th>
+                        <th class="tdG" title="Puntos a Fabor.">F</th>
+                        <th class="tdG" title="Puntos en Contra.">C</th>
+                        <th class="tdG" title="Puntos a Fabor.">F</th>
+                        <th class="tdG" title="Puntos en Contra.">C</th>
+                        <th class="tdG" title="Puntos a Fabor.">F</th>
+                        <th class="tdG" title="Puntos en Contra.">C</th>
+                        <th class="tdG" title="Puntos a Fabor.">F</th>
+                        <th class="tdG" title="Puntos en Contra.">C</th>
+                        <th class="tdV">J/G</th>
+                        <th id="head-avg" class="tdG">AVG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row-game">
+                        <td class="tdN">1</td>
+                        <td class="tdG">Mesa</td>
+                        <td class="tdG">
+                            <select>
+                                <script>document.write(options)</script>
+                            </select>
+                        </td>
+                        <td>No.</td>
+                        <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="2" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="3" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="3" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="4" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="4" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="5" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="5" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td class="jg">0</td>
+                        <td class="avg">0</td>
+                    </tr>
+                    <tr class="row-game">
+                        <td class="tdN">2</td>
+                        <td class="tdG">Mesa</td>
+                        <td class="tdG">
+                            <select>
+                                <script>document.write(options)</script>
+                            </select>
+                        </td>
+                        <td>No.</td>
+                        <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="2" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="3" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="3" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="4" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="4" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="5" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="5" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td class="jg">0</td>
+                        <td class="avg">0</td>
+                    </tr>
+                    <tr class="row-game">
+                        <td class="tdN">3</td>
+                        <td class="tdG">Mesa</td>
+                        <td class="tdG">
+                            <select>
+                                <script>document.write(options)</script>
+                            </select>
+                        </td>
+                        <td>No.</td>
+                        <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="2" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="3" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="3" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="4" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="4" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="5" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="5" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td class="jg">0</td>
+                        <td class="avg">0</td>
+                    </tr>
+                    <tr class="row-game">
+                        <td class="tdN">4</td>
+                        <td class="tdG">Mesa</td>
+                        <td class="tdG">
+                            <select>
+                                <script>document.write(options)</script>
+                            </select>
+                        </td>
+                        <td>No.</td>
+                        <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="2" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="3" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="3" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="4" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="4" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td data-ronda="5" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
+                        <td data-ronda="5" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
+                        <td class="jg">0</td>
+                        <td class="avg">0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="button-add" type="button" class="btn btn-success">Añadir</button>
+            <button id="button-mix" type="button" class="btn btn-prymary">Mezclar 2</button>
+            <button id="button-start" type="button" class="btn btn-prymary">Iniciar Ronda 3</button>
+
+            <button id="button-order" type="button" class="btn btn-warning">Order 4</button>
+
         </div>
 
-        <button id="button-add" type="button" class="btn btn-success">Success 1</button>
-        <button id="button-mix" type="button" class="btn btn-prymary">Mezclar 2</button>
-        <button id="button-start" type="button" class="btn btn-prymary">Iniciar Ronda 3</button>
+        <div class="tab-pane fade" id="posiciones" role="tabpanel" aria-labelledby="profile-tab">Mesas
+            <div class="col col-md-1 container-table-player">
+                <div class="item-number">5</div>
+                <div class="item-table">1C</div>
+            </div>
 
-        <button id="button-order" type="button" class="btn btn-warning">Order 4</button>
-
-        <script>
-
-            $(document).on('click', '#button-order', function (event) {
-
-                let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
-                let cell = 2 * juego + 2
-
-                let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')            
-                $.each(row, function (index, value) {
-                    $(this)[0].cells[cell].children[0].disabled = true
-                    $(this)[0].cells[cell + 1].children[0].disabled = true       
-                    $(this)[0].classList.remove("line-writer")             
-                    console.log($(this)[0].cells[cell].children[0].classList.remove("input-puntos"))
-                    console.log($(this)[0].cells[cell + 1].children[0].classList.remove("input-puntos"))
-                });
+        </div>
+        <div class="tab-pane fade" id="puntaje" role="tabpanel" aria-labelledby="contact-tab">
 
 
-                let table = $('table#tabla-super-polla')
+            <table id="tabla-super-polla-puntaje" style="width: 100%;">
+                <thead>
+                    <tr id="ronda-Puntos-puntaje">
+                        <th class="tdG" title="pos.">Pos.</th>
+                        <th class="tdG" title="id-jugador">Id Jugador</th>
+                        <th class="tdG" title="nombre">Nombre</th>
+                        <th class="tdV" title="j/j">J/J</th>
+                        <th id="head-jg-puntaje" class="tdV" title="j/g">J/G</th>
+                        <th class="tdV" title="j/p">J/P</th>
+                        <th class="tdV" title="ptos_p">PTOS P</th>
+                        <th class="tdV" title="ptos_n">PTOS N</th>
+                        <th id="head-avg-puntaje" class="tdV" title="avg" colspan="5">Avg</th>
+                        <th class="tdG" title="efec" colspan="5">EFEC</th>
+                        <th class="tdV" title="pro">PRO</th>
+                        <th class="tdV" title="z">Z</th>
+                        <th class="tdV" title="pro2">PRO2</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                let headAvg = document.getElementById("head-avg");
+                </tbody>
+            </table>
 
-                let avg = $('table#tabla-super-polla thead #ronda-Puntos th').index(headAvg)
+        </div>
 
-                var rowsJueGan = table.find('tr:gt(1)').toArray().sort(comparer(avg - 1))
-                rowsJueGan = rowsJueGan.reverse()
-                var rowsJueGanCopy = [...rowsJueGan]
-                var rowsAvg = rowsJueGanCopy.sort(comparerModificado(avg))
+    </div>
 
-                for (var i = 0; i < rowsAvg.length; i++) {
-                    table.append(rowsAvg[i])
+    <script>
+
+        $(document).on('click', '#button-order', function (event) {
+            /*let position = 0
+            let arrMesa = 0
+            let numero = 1
+            let mesa = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"];*/
+
+            let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
+            let cell = 2 * juego + 2
+            let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')
+
+            $.each(row, function (index, value) {
+                $(this)[0].cells[cell].children[0].disabled = true
+                $(this)[0].cells[cell + 1].children[0].disabled = true
+                $(this)[0].classList.remove("line-writer")
+                $(this)[0].cells[cell].children[0].classList.remove("input-puntos")
+                $(this)[0].cells[cell + 1].children[0].classList.remove("input-puntos")
+            });
+
+            //Ordenamiento de la tabla Principal
+            let table = $('table#tabla-super-polla')
+            let headAvg = document.getElementById("head-avg")
+            let avg = $('table#tabla-super-polla thead #ronda-Puntos th').index(headAvg)
+            //console.log(table.find('tr:gt(0)'))
+            var rowsJueGan = table.find('tr:gt(1)').toArray().sort(comparer(avg - 1))
+            rowsJueGan = rowsJueGan.reverse()
+            var rowsJueGanCopy = [...rowsJueGan]
+            var rowsAvg = rowsJueGanCopy.sort(comparerModificado(avg))
+
+            for (var i = 0; i < rowsAvg.length; i++) {
+                table.append(rowsAvg[i])
+            }
+
+            //Ordenamiento de la tabla de los puntajes generales
+            let tablePuntuacion = $('table#tabla-super-polla-puntaje')
+            let headAvgPuntaje = document.getElementById("head-avg-puntaje")
+            let headJgPuntaje = document.getElementById("head-jg-puntaje")
+            let avgPuntaje = $('table#tabla-super-polla-puntaje thead #ronda-Puntos-puntaje th').index(headAvgPuntaje)
+            let jgPuntaje = $('table#tabla-super-polla-puntaje thead #ronda-Puntos-puntaje th').index(headJgPuntaje)
+            console.log(avgPuntaje)
+            //return
+            var rowsJueGanPuntuacion = tablePuntuacion.find('tr:gt(0)').toArray().sort(comparer(jgPuntaje))
+            rowsJueGanPuntuacion = rowsJueGanPuntuacion.reverse()
+            var rowsJueGanPuntuacionCopy = [...rowsJueGanPuntuacion]
+            var rowsAvgPuntuacion = rowsJueGanPuntuacionCopy.sort(comparerModificado(avgPuntaje, jgPuntaje))
+
+            $('table#tabla-super-polla-puntaje tbody tr').remove();
+            for (var i = 0; i < rowsAvgPuntuacion.length; i++) {
+                tablePuntuacion.append(rowsAvgPuntuacion[i])
+            }
+
+            posicionesYMesas($("#tabla-super-polla")[0].rows)
+
+            /* $.each($("#tabla-super-polla")[0].rows, (index, value) => {
+                 if (index >= 2) {
+                     position += 1
+                     $(value)[0].cells[0].innerHTML = position
+                     $(value)[0].cells[1].innerHTML = numero + mesa[arrMesa]
+                     numero >= 4 ? (numero = 1, arrMesa += 1) : numero += 1
+                 }
+             })*/
+
+        })
+
+        $(document).on('change', '#select-ronda', function (event) {
+            if (event.target.value) {
+                for (var i = 6; i <= event.target.value; i++) {
+                    let count = $("#ronda-Puntos").children().length - 2
+
+                    const elementRow = `<th colspan="2" class="tdV last-ronda-juego">Juego ${i}</th>`
+                    $('.last-ronda-juego').last().after(elementRow)
+
+                    const elementRowGame = `<th class="tdG" title="Puntos a Fabor.">F</th><th class="tdG" title="Puntos en Contra.">C</th>`
+                    $("#ronda-Puntos th:nth-child(" + count + ")").after(elementRowGame)
+
+                    $.each($(".row-game td:nth-child(" + count + ")"), function (index, value) {
+                        const elementRowPoint = `<td data-ronda="${i}" data-puntos="F"><input type="number" class="PuntosF" disabled></td><td data-ronda="${i}" data-puntos="C"><input type="number" class="PuntosC" disabled></td>`
+                        $(this).after(elementRowPoint)
+                    });
                 }
+            }
+        })
+
+        $(document).on('click', '#button-start', function (event) {
+            /*let position = 0
+            let arrMesa = 0
+            let numero = 1
+            let mesa = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"];*/
 
 
-            })
+            $("#tabla-super-polla")[0].dataset.rondaEnJuego = parseInt($("#tabla-super-polla")[0].dataset.rondaEnJuego) + 1
+            let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
+            let cell = 2 * juego + 2
 
-            $(document).on('change', '#select-ronda', function (event) {
-                if (event.target.value) {
-                    for (var i = 6; i <= event.target.value; i++) {
-                        let count = $("#ronda-Puntos").children().length - 2
+            let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')
 
-                        const elementRow = `<th colspan="2" class="tdV last-ronda-juego">Juego ${i}</th>`
-                        $('.last-ronda-juego').last().after(elementRow)
+            $.each(row, function (index, value) {
+                //console.log($(this)[0].cells[4].dataset.ronda)
+                $(this)[0].cells[cell].children[0].disabled = false
+                $(this)[0].cells[cell + 1].children[0].disabled = false
+                $(this)[0].classList.add("line-writer")
+                $(this)[0].cells[cell].children[0].classList.add("input-puntos")
+                $(this)[0].cells[cell + 1].children[0].classList.add("input-puntos")
+            });
+            $('table#tabla-super-polla tbody tr:nth-child( 1 )')[0].cells[cell].children[0].focus()
 
-                        const elementRowGame = `<th class="tdG" title="Puntos a Fabor.">F</th><th class="tdG" title="Puntos en Contra.">C</th>`
-                        $("#ronda-Puntos th:nth-child(" + count + ")").after(elementRowGame)
-
-
-                        $.each($(".row-game td:nth-child(" + count + ")"), function (index, value) {
-                            const elementRowPoint = `<td data-ronda="${i}" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled></td><td data-ronda="${i}" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled></td>`
-                            $(this).after(elementRowPoint)
-                        });
-                    }
+            //coloca funcion de las posiciones y mesas
+            posicionesYMesas($("#tabla-super-polla")[0].rows)
+            $('table#tabla-super-polla-puntaje tbody tr').remove(); //Borra los elementos de la tabla de puntaje para escribir los nuevos
+            /*$.each($("#tabla-super-polla")[0].rows, (index, value) => {
+                if (index >= 2) {
+                    position += 1
+                    $(value)[0].cells[0].innerHTML = position
+                    $(value)[0].cells[1].innerHTML = numero + mesa[arrMesa]
+                    numero >= 4 ? (numero = 1, arrMesa += 1) : numero += 1
                 }
-            })
+            })*/
 
-            $(document).on('click', '#button-start', function (event) {
+        })
 
-                $("#tabla-super-polla")[0].dataset.rondaEnJuego = parseInt($("#tabla-super-polla")[0].dataset.rondaEnJuego) + 1
-                let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
-                let cell = 2 * juego + 2
+        $(document).on('focusout', '.input-puntos', function (event) {
 
-                let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')
+            let punto = $(event.target.parentElement)[0].dataset.puntos
+            let puntuacion = event.target.value
+            let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
+            let cell = 2 * juego + 2
+            let impar = true
+            punto == "F" ? (impar = true) : (impar = false)
 
-                $.each(row, function (index, value) {
-                    //console.log($(this)[0].cells[4].dataset.ronda)
-                    $(this)[0].cells[cell].children[0].disabled = false
-                    $(this)[0].cells[cell + 1].children[0].disabled = false
-                    $(this)[0].classList.add("line-writer")
-                    console.log($(this)[0].cells[cell].children[0].classList.add("input-puntos"))
-                    console.log($(this)[0].cells[cell + 1].children[0].classList.add("input-puntos"))
-                });
-                $('table#tabla-super-polla tbody tr:nth-child( 1 )')[0].cells[cell].children[0].focus()
-            })
+            $.each($(event.target.parentElement.parentElement).nextUntil(".line-writer"), function (index, value) {
+                (impar) ? cellNew = cell + 1 : cellNew = cell
+                impar = !impar
+                $(value).children()[cellNew].children[0].value = event.target.value
 
-            $(document).on('focusout', '.input-puntos', function (event) {
+            });
 
-                let punto = $(event.target.parentElement)[0].dataset.puntos
-                let puntuacion = event.target.value
-                let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
-                let cell = 2 * juego + 2
-                let impar = true
-                punto == "F" ? (impar = true) : (impar = false)
-
-                $.each($(event.target.parentElement.parentElement).nextUntil(".line-writer"), function (index, value) {
-
-                    (impar) ? cellNew = cell + 1 : cellNew = cell
-                    impar = !impar
-                    $(value).children()[cellNew].children[0].value = event.target.value
-                    //console.log($(value).children()[cell + 1].children[0])
-
-                });
-            })
+            const cellF = $(event.target.parentElement.parentElement).children()[cell].children[0].value
+            const cellC = $(event.target.parentElement.parentElement).children()[cell + 1].children[0].value
 
 
-            $(document).on('click', '#button-add', function (event) {
+            if (cellF && cellC) {
 
-                let line = `<tr class="row-game">
+                const a = Array.from($(event.target.parentElement.parentElement))
+                const b = Array.from($(event.target.parentElement.parentElement).nextUntil(".line-writer"))
+                const rows = [...a, ...b]
+
+                rows.forEach(function callback(currentValue, index, array) {
+                    const rowSum = $(currentValue)[0].cells
+
+                    let JG = 0, JP = 0, PFavor = 0, PContra = 0, Z = 0
+                    Array.from(rowSum, (element, index) => {
+
+                        if (index > 3 && index < rowSum.length - 2) {
+                            const input = parseFloat($(element)[0].children[0].value)
+                            if (!isNaN(input)) {
+                                let bo = $(element)[0].dataset.puntos
+                                if ($(element)[0].dataset.puntos == "C") {
+                                    PContra += parseFloat($(element)[0].children[0].value)
+                                    if (input >= 100) {
+                                        JP += parseInt(1)
+                                    }
+                                    if (input == 0)
+                                        Z += parseInt(1)
+                                } else {
+                                    PFavor += parseFloat($(element)[0].children[0].value)
+                                    if (input >= 100) {
+                                        JG += parseInt(1)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    // Podria ir la funcion que cargue la otra tabla
+
+                    tablaPuntuacionPolla(currentValue, index, JG, JP, PContra, PFavor, Z, $("#tabla-super-polla")[0].rows.length - 2, juego)
+                    $(currentValue).find(".jg")[0].innerHTML = JG
+                    $(currentValue).find(".avg")[0].innerHTML = PFavor - PContra
+                })
+
+                /*$.each($(event.target.parentElement.parentElement).nextUntil(".line-writer"), function (index, value) {
+                   
+                //                $proAcum = $ppAcum / $jjAcum;     //Promedio(pro)
+               // $avgAcum = $ppAcum - $pnAcum;  //average (avg)
+                    //$efecAcum = ($jgAcum * 1000) / $jjAcum;
+                    // $pro_gAcum = 1 + ($jgAcum * 2) + (($jjAcum - $jgAcum) * (-1)) + ($zAcum * 1) + 6;
+                    $(value).find(".jg")[0].innerHTML = JG
+                });*/
+                /*console.log("JG", JG)
+                console.log("JP", JP)
+                console.log("zapato", Z)
+                console.log("favor", PFavor)
+                console.log("contra", PContra)*/
+            }
+            //Termina la funcion
+        })
+
+
+        $(document).on('click', '#button-add', function (event) {
+
+            let line = `<tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
-                            <td class="tdG">Nombre</td>
+                            <td class="tdG"><select>${options}</select></td>
                             <td>No.</td>
-                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
-                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
-                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>
+                            <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
+                            <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>
+                            <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
+                            <td data-ronda="2" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>
+                            <td data-ronda="3" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
+                            <td data-ronda="3" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>
+                            <td data-ronda="4" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
+                            <td data-ronda="4" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>
+                            <td data-ronda="5" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
+                            <td data-ronda="5" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>
                             `;
 
 
-                if ($("#select-ronda").val()) {
-                    for (var i = 6; i <= $("#select-ronda").val(); i++) {
-                        line += `<td data-ronda="${i}" data-puntos="F"><input type="number" style="width: 100%; color: green;" disabled/></td>
-                                 <td data-ronda="${i}" data-puntos="C"><input type="number" style="width: 100%; color: red;" disabled/></td>`
-                    }
+            if ($("#select-ronda").val()) {
+                for (var i = 6; i <= $("#select-ronda").val(); i++) {
+                    line += `<td data-ronda="${i}" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
+                                 <td data-ronda="${i}" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>`
                 }
-                line += `<td>1</td>
-                            <td>11</td>
+            }
+            line += `<td class="jg">0</td>
+                            <td class="avg">0</td>
                         </tr>`
 
-                $('#tabla-super-polla tr:last').after(line.repeat(4))
+            $('#tabla-super-polla tr:last').after(line.repeat(4))
+        })
+
+        function comparer(index) {
+            return function (a, b) {
+                var valA = getCellValue(a, index),
+                    valB = getCellValue(b, index),
+                    valC = getCellValue(a, index + 1),
+                    valD = getCellValue(b, index + 1)
+                //console.log(valA, valB, valC, valD)
+                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+            }
+        }
+
+        function comparerModificado(index, jgPuntaje = index - 1) {
+            return function (a, b) {
+                var valA = getCellValue(a, index),
+                    valB = getCellValue(b, index),
+                    valC = getCellValue(a, jgPuntaje),
+                    valD = getCellValue(b, jgPuntaje)
+                console.log("valores", valA, valB, valC, valD)
+                if (valC === valD) {
+                    return $.isNumeric(valA) && $.isNumeric(valB) ? valB - valA : valA.localeCompare(valB)
+                }
+                return 0;
+            }
+        }
+
+        function getCellValue(row, index) {
+            return $(row).children('td').eq(index).html()
+        }
+
+        $(document).on('click', '#button-mix', function (event) {
+            let table = $('table#tabla-super-polla tbody')[0]
+
+            //1. get all rows
+            let rowsCollection = $('table#tabla-super-polla tbody tr')
+
+            //2. convert to array
+            let rows = Array.from(rowsCollection)
+
+            //3. shuffle
+            shuffleArray(rows);
+
+            //4. add back to the DOM
+            for (const row of rows) {
+                table.appendChild(row);
+            }
+        })
+
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        var positionTablaCopy = 0
+
+        function tablaPuntuacionPolla(currentValue, index, JG, JP, PContra, PFavor, Z, rowsTabOrig, juego) {
+            //Cargar en la tabla de puntuaciones 
+            let tablePuntuacionCell = $('#tabla-super-polla-puntaje')[0].rows[0].cells.length
+            let tablePuntuacion = $('#tabla-super-polla-puntaje tbody')[0]
+            
+            //console.log(tablePuntuacionCell)
+            // return
+            //console.log(tablePuntuacion)
+
+
+            // rows.forEach(function callback(currentValue, index2, array) {
+            console.log(currentValue)
+            console.log("index", index)
+            console.log("JG", JG)
+            console.log("JP", JP)
+            console.log("PContra", PContra)
+            console.log("PFavor", PFavor)
+            console.log("Z", Z)
+            console.log("rowsTabOrig", rowsTabOrig)
+            //console.log("rowsTabCopy", tablePuntuacionLength)
+
+
+            //console.log($(currentValue)[0].cells[2].children[0].selectedOptions[0].value)
+            //console.log($(currentValue)[0].cells[2].children[0].selectedOptions[0].label)
+
+            console.log("Error", positionTablaCopy)
+
+            var rowTabPuntuaciones = tablePuntuacion.insertRow(positionTablaCopy);
+            for (let celda = 0; celda < tablePuntuacionCell; celda++) {
+                //let (cell + celda) = rowTabPuntuaciones.insertCell(celda);
+                this["cell" + celda] = rowTabPuntuaciones.insertCell(celda);
+            }
+
+            cell8.colSpan = "5"
+            cell9.colSpan = "5"
+
+            cell0.innerHTML = $(currentValue)[0].cells[0].textContent;
+            cell1.innerHTML = $(currentValue)[0].cells[2].children[0].selectedOptions[0].value;
+            cell2.innerHTML = $(currentValue)[0].cells[2].children[0].selectedOptions[0].label;
+            cell3.innerHTML = juego;
+            cell4.innerHTML = JG;
+            cell5.innerHTML = JP;
+            cell6.innerHTML = PFavor;
+            cell7.innerHTML = PContra;
+            cell8.innerHTML = PFavor - PContra;
+            cell9.innerHTML = "EFEC";
+            cell10.innerHTML = "PRO";
+            cell11.innerHTML = Z;
+            cell12.innerHTML = "PRO2";
+            
+            positionTablaCopy += 1
+            let tablePuntuacionLength = $('#tabla-super-polla-puntaje tbody')[0].rows.length
+
+            if (rowsTabOrig == tablePuntuacionLength) {
+                positionTablaCopy = 0
+            }
+            
+
+        }
+
+
+        function posicionesYMesas(tablaRows) {
+
+            let position = 0
+            let arrMesa = 0
+            let numero = 1
+            let mesa = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"];
+
+            $.each($("#tabla-super-polla")[0].rows, (index, value) => {
+                if (index >= 2) {
+                    position += 1
+                    $(value)[0].cells[0].innerHTML = position
+                    $(value)[0].cells[1].innerHTML = numero + mesa[arrMesa]
+                    numero >= 4 ? (numero = 1, arrMesa += 1) : numero += 1
+                }
             })
+        }
 
-            function comparer(index) {
-                return function (a, b) {
-                    var valA = getCellValue(a, index),
-                        valB = getCellValue(b, index),
-                        valC = getCellValue(a, index + 1),
-                        valD = getCellValue(b, index + 1)
-                    //console.log(valA, valB, valC, valD)
-                    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
-                }
-            }
-
-            function comparerModificado(index) {
-                return function (a, b) {
-                    var valA = getCellValue(a, index),
-                        valB = getCellValue(b, index),
-                        valC = getCellValue(a, index - 1),
-                        valD = getCellValue(b, index - 1)
-                    //console.log(valA, valB, valC, valD)
-                    if (valC === valD) {
-                        return $.isNumeric(valA) && $.isNumeric(valB) ? valB - valA : valA.localeCompare(valB)
-                    }
-                    return 0;
-                }
-            }
-
-            function getCellValue(row, index) {
-                return $(row).children('td').eq(index).html()
-            }
-
-            $(document).on('click', '#button-mix', function (event) {
-                let table = $('table#tabla-super-polla tbody')[0]
-
-                //1. get all rows
-                let rowsCollection = $('table#tabla-super-polla tbody tr')
-
-                //2. convert to array
-                let rows = Array.from(rowsCollection)
-
-                //3. shuffle
-                shuffleArray(rows);
-
-                //4. add back to the DOM
-                for (const row of rows) {
-                    table.appendChild(row);
-                }
-            })
-            function shuffleArray(array) {
-                for (var i = array.length - 1; i > 0; i--) {
-                    var j = Math.floor(Math.random() * (i + 1));
-                    var temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                }
-            }
-
-
-        </script>
+    </script>
 
 </body>
 
