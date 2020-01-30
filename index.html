@@ -103,24 +103,12 @@
             padding-left: 0.5rem !important;
         }
 
-        .Posicion {
-            background-color: #ff9400;
-            color: #fff;
+        .numero-tabla {
+            background-color: #ff9400b8;
             text-align: center;
-            padding: 12px;
-            margin-left: 20px;
+            color: #fff;
         }
 
-        .Posicionnombre {
-            background-color: #dde0e2;
-            color: #808080;
-            padding: 12px;
-            line-height: 30px;
-        }
-
-        .text-mesa {
-            color: #ff9400;
-        }
 
         select {
             border: 0px;
@@ -182,7 +170,7 @@
 <body>
 
     <script>
-        const options = ' <option value="1">Alberto</option><option value="2">Jose</option><option value="3">Maria</option><option value="4">Pedro</option><option value="5">Miguel</option><option value="6">Mariana</option><option value="7">Vicente</option><option value="8">Adolfo</option>'
+        const options = ' <option value="0">Seleccione</option><option value="1">Alberto</option><option value="2">Jose</option><option value="3">Maria</option><option value="4">Pedro</option><option value="5">Miguel</option><option value="6">Mariana</option><option value="7">Vicente</option><option value="8">Adolfo</option>'
     </script>
 
     <select id="select-ronda">
@@ -246,11 +234,11 @@
                         <td class="tdN">1</td>
                         <td class="tdG">Mesa</td>
                         <td class="tdG">
-                            <select>
+                            <select class="select">
                                 <script>document.write(options)</script>
                             </select>
                         </td>
-                        <td>No.</td>
+                        <td class="numero-tabla">No.</td>
                         <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
                         <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
                         <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
@@ -268,11 +256,11 @@
                         <td class="tdN">2</td>
                         <td class="tdG">Mesa</td>
                         <td class="tdG">
-                            <select>
+                            <select class="select">
                                 <script>document.write(options)</script>
                             </select>
                         </td>
-                        <td>No.</td>
+                        <td class="numero-tabla">No.</td>
                         <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
                         <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
                         <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
@@ -290,11 +278,11 @@
                         <td class="tdN">3</td>
                         <td class="tdG">Mesa</td>
                         <td class="tdG">
-                            <select>
+                            <select class="select">
                                 <script>document.write(options)</script>
                             </select>
                         </td>
-                        <td>No.</td>
+                        <td class="numero-tabla">No.</td>
                         <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
                         <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
                         <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
@@ -312,11 +300,11 @@
                         <td class="tdN">4</td>
                         <td class="tdG">Mesa</td>
                         <td class="tdG">
-                            <select>
+                            <select class="select">
                                 <script>document.write(options)</script>
                             </select>
                         </td>
-                        <td>No.</td>
+                        <td class="numero-tabla">No.</td>
                         <td data-ronda="1" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
                         <td data-ronda="1" data-puntos="C"><input type="number" class="PuntosC" disabled /></td>
                         <td data-ronda="2" data-puntos="F"><input type="number" class="PuntosF" disabled /></td>
@@ -334,22 +322,21 @@
             </table>
 
             <button id="button-add" type="button" class="btn btn-success">Añadir</button>
-            <button id="button-mix" type="button" class="btn btn-prymary">Mezclar 2</button>
-            <button id="button-start" type="button" class="btn btn-prymary">Iniciar Ronda 3</button>
+            <button id="button-mix" type="button" class="btn btn-prymary" disabled="disabled">Mezclar 2</button>
+            <button id="button-start" type="button" class="btn btn-prymary" disabled="disabled">Iniciar Ronda 3</button>
 
-            <button id="button-order" type="button" class="btn btn-warning">Order 4</button>
+            <button id="button-order" type="button" class="btn btn-warning" disabled="disabled">Order 4</button>
 
         </div>
 
-        <div class="tab-pane fade" id="posiciones" role="tabpanel" aria-labelledby="profile-tab">Mesas
-            <div class="col col-md-1 container-table-player">
-                <div class="item-number">5</div>
-                <div class="item-table">1C</div>
+        <div class="tab-pane fade" id="posiciones" role="tabpanel" aria-labelledby="profile-tab">
+            <div id="container-players" class="row">
+                <!--Espacio donde se Añade las mesas y los numeros de jugadores-->
             </div>
 
         </div>
-        <div class="tab-pane fade" id="puntaje" role="tabpanel" aria-labelledby="contact-tab">
 
+        <div class="tab-pane fade" id="puntaje" role="tabpanel" aria-labelledby="contact-tab">
 
             <table id="tabla-super-polla-puntaje" style="width: 100%;">
                 <thead>
@@ -373,18 +360,12 @@
 
                 </tbody>
             </table>
-
         </div>
-
     </div>
 
     <script>
 
         $(document).on('click', '#button-order', function (event) {
-            /*let position = 0
-            let arrMesa = 0
-            let numero = 1
-            let mesa = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"];*/
 
             let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
             let cell = 2 * juego + 2
@@ -431,16 +412,11 @@
             }
 
             posicionesYMesas($("#tabla-super-polla")[0].rows)
+            numeroYMesa($('table#tabla-super-polla tbody')[0])
 
-            /* $.each($("#tabla-super-polla")[0].rows, (index, value) => {
-                 if (index >= 2) {
-                     position += 1
-                     $(value)[0].cells[0].innerHTML = position
-                     $(value)[0].cells[1].innerHTML = numero + mesa[arrMesa]
-                     numero >= 4 ? (numero = 1, arrMesa += 1) : numero += 1
-                 }
-             })*/
-
+            $("#button-start").prop('disabled', false)
+            $("#button-order").prop('disabled', true)
+            
         })
 
         $(document).on('change', '#select-ronda', function (event) {
@@ -460,43 +436,84 @@
                     });
                 }
             }
+            event.target.disabled = true
         })
 
         $(document).on('click', '#button-start', function (event) {
-            /*let position = 0
-            let arrMesa = 0
-            let numero = 1
-            let mesa = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "U", "V", "W", "X", "Y", "Z"];*/
 
+            $('table#tabla-super-polla-puntaje tbody tr').remove(); //Borra los elementos de la tabla de puntaje para escribir los nuevos
 
             $("#tabla-super-polla")[0].dataset.rondaEnJuego = parseInt($("#tabla-super-polla")[0].dataset.rondaEnJuego) + 1
             let juego = $("#tabla-super-polla")[0].dataset.rondaEnJuego
             let cell = 2 * juego + 2
-
+            let rowCount = $('table#tabla-super-polla tbody tr').length
             let row = $('table#tabla-super-polla tbody tr:nth-child( 4n + 1 )')
 
             $.each(row, function (index, value) {
-                //console.log($(this)[0].cells[4].dataset.ronda)
                 $(this)[0].cells[cell].children[0].disabled = false
                 $(this)[0].cells[cell + 1].children[0].disabled = false
                 $(this)[0].classList.add("line-writer")
                 $(this)[0].cells[cell].children[0].classList.add("input-puntos")
                 $(this)[0].cells[cell + 1].children[0].classList.add("input-puntos")
             });
+
             $('table#tabla-super-polla tbody tr:nth-child( 1 )')[0].cells[cell].children[0].focus()
 
+            const result = rowCount % 4
+            if (result != 0) {
+                $("table#tabla-super-polla tbody tr:nth-last-child(" + result + ")").prev().nextAll()
+
+                $.each($("table#tabla-super-polla tbody tr:nth-last-child(" + result + ")").prev().nextAll(), (index, value) => {
+                    if (index == 0) {
+                        $(value)[0].cells[cell].children[0].classList.remove("input-puntos")
+                        $(value)[0].cells[cell + 1].children[0].classList.remove("input-puntos")
+
+                        $(value)[0].cells[cell].children[0].disabled = true
+                        $(value)[0].cells[cell + 1].children[0].disabled = true
+                    }
+                    $(value)[0].cells[cell].children[0].value = 100
+                    $(value)[0].cells[cell + 1].children[0].value = 50
+
+                    //$(".input-puntos").trigger("focusout");
+                    const rowSum = $(value)[0].cells
+
+                    let JG = 0, JP = 0, PFavor = 0, PContra = 0, Z = 0
+                    Array.from(rowSum, (element, index) => {
+
+                        if (index > 3 && index < rowSum.length - 2) {
+                            const input = parseFloat($(element)[0].children[0].value)
+                            if (!isNaN(input)) {
+                                let bo = $(element)[0].dataset.puntos
+                                if ($(element)[0].dataset.puntos == "C") {
+                                    PContra += parseFloat($(element)[0].children[0].value)
+                                    if (input >= 100) {
+                                        JP += parseInt(1)
+                                    }
+                                    if (input == 0)
+                                        Z += parseInt(1)
+                                } else {
+                                    PFavor += parseFloat($(element)[0].children[0].value)
+                                    if (input >= 100) {
+                                        JG += parseInt(1)
+                                    }
+                                }
+                            }
+                        }
+                    })
+
+                    tablaPuntuacionPolla(value, index, JG, JP, PContra, PFavor, Z, $("#tabla-super-polla")[0].rows.length - 2, juego, true)
+
+                    $(value).find(".jg")[0].innerHTML = JG
+                    $(value).find(".avg")[0].innerHTML = PFavor - PContra
+                });
+            }
             //coloca funcion de las posiciones y mesas
             posicionesYMesas($("#tabla-super-polla")[0].rows)
-            $('table#tabla-super-polla-puntaje tbody tr').remove(); //Borra los elementos de la tabla de puntaje para escribir los nuevos
-            /*$.each($("#tabla-super-polla")[0].rows, (index, value) => {
-                if (index >= 2) {
-                    position += 1
-                    $(value)[0].cells[0].innerHTML = position
-                    $(value)[0].cells[1].innerHTML = numero + mesa[arrMesa]
-                    numero >= 4 ? (numero = 1, arrMesa += 1) : numero += 1
-                }
-            })*/
 
+            //document.getElementById("button-mix").setAttribute("disabled", "disabled");
+
+            $("#button-start").prop('disabled', true)
+            $("#button-order").prop('disabled', false)
         })
 
         $(document).on('focusout', '.input-puntos', function (event) {
@@ -511,18 +528,16 @@
             $.each($(event.target.parentElement.parentElement).nextUntil(".line-writer"), function (index, value) {
                 (impar) ? cellNew = cell + 1 : cellNew = cell
                 impar = !impar
-                $(value).children()[cellNew].children[0].value = event.target.value
-
+                $(value).children()[cellNew].children[0].value = event.target.value // Revisar sintaxis
             });
 
             const cellF = $(event.target.parentElement.parentElement).children()[cell].children[0].value
             const cellC = $(event.target.parentElement.parentElement).children()[cell + 1].children[0].value
 
-
             if (cellF && cellC) {
 
-                const a = Array.from($(event.target.parentElement.parentElement))
-                const b = Array.from($(event.target.parentElement.parentElement).nextUntil(".line-writer"))
+                const a = Array.from($(event.target.parentElement.parentElement)) //Row primera de las cuatro
+                const b = Array.from($(event.target.parentElement.parentElement).nextUntil(".line-writer")) //Las 3 Rows que le siguen a la anterior
                 const rows = [...a, ...b]
 
                 rows.forEach(function callback(currentValue, index, array) {
@@ -551,8 +566,8 @@
                             }
                         }
                     })
-                    // Podria ir la funcion que cargue la otra tabla
 
+                    //Carga las puntuaciones en la otra tabla
                     tablaPuntuacionPolla(currentValue, index, JG, JP, PContra, PFavor, Z, $("#tabla-super-polla")[0].rows.length - 2, juego)
                     $(currentValue).find(".jg")[0].innerHTML = JG
                     $(currentValue).find(".avg")[0].innerHTML = PFavor - PContra
@@ -581,8 +596,8 @@
             let line = `<tr class="row-game">
                             <td class="tdN">Pos</td>
                             <td class="tdG">Mesa</td>
-                            <td class="tdG"><select>${options}</select></td>
-                            <td>No.</td>
+                            <td class="tdG"><select class="select">${options}</select></td>
+                            <td class="numero-tabla">No.</td>
                             <td data-ronda="1" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
                             <td data-ronda="1" data-puntos="C"><input type="number" style="width: 100%;" class="PuntosC" disabled/></td>
                             <td data-ronda="2" data-puntos="F"><input type="number" style="width: 100%;" class="PuntosF" disabled/></td>
@@ -607,7 +622,13 @@
                         </tr>`
 
             $('#tabla-super-polla tr:last').after(line.repeat(4))
+
+            $("#button-mix").prop('disabled', false)
         })
+        $(document).on('change', '.select', function (event) {
+            $(event.target.parentElement.parentElement)[0].cells[3].innerHTML = event.target.value
+        })
+
 
         function comparer(index) {
             return function (a, b) {
@@ -626,7 +647,7 @@
                     valB = getCellValue(b, index),
                     valC = getCellValue(a, jgPuntaje),
                     valD = getCellValue(b, jgPuntaje)
-                console.log("valores", valA, valB, valC, valD)
+                //console.log("valores", valA, valB, valC, valD)
                 if (valC === valD) {
                     return $.isNumeric(valA) && $.isNumeric(valB) ? valB - valA : valA.localeCompare(valB)
                 }
@@ -640,7 +661,6 @@
 
         $(document).on('click', '#button-mix', function (event) {
             let table = $('table#tabla-super-polla tbody')[0]
-
             //1. get all rows
             let rowsCollection = $('table#tabla-super-polla tbody tr')
 
@@ -654,6 +674,25 @@
             for (const row of rows) {
                 table.appendChild(row);
             }
+
+            document.getElementById("button-add").setAttribute("disabled", "disabled");
+
+            const selected = [];
+
+            $(".select").each((index, element) => {
+                $(element)[0].disabled = true
+
+                if ($(element)[0].value == 0) {
+                    $(element)[0].parentElement.parentElement.remove()
+                }
+            });
+
+            posicionesYMesas($("#tabla-super-polla")[0].rows)
+            //Colocar la creacion de mesas y el numero
+            numeroYMesa(table)
+
+            $("#button-start").prop('disabled', false)
+            $("#button-mix").prop('disabled', true)
         })
 
         function shuffleArray(array) {
@@ -666,17 +705,14 @@
         }
         var positionTablaCopy = 0
 
-        function tablaPuntuacionPolla(currentValue, index, JG, JP, PContra, PFavor, Z, rowsTabOrig, juego) {
+        function tablaPuntuacionPolla(currentValue, index, JG, JP, PContra, PFavor, Z, rowsTabOrig, juego, leftoverFields = false) {
             //Cargar en la tabla de puntuaciones 
             let tablePuntuacionCell = $('#tabla-super-polla-puntaje')[0].rows[0].cells.length
             let tablePuntuacion = $('#tabla-super-polla-puntaje tbody')[0]
-            
-            //console.log(tablePuntuacionCell)
-            // return
-            //console.log(tablePuntuacion)
 
-
-            // rows.forEach(function callback(currentValue, index2, array) {
+            if (!leftoverFields) {
+                positionTablaCopy = 0
+            }
             console.log(currentValue)
             console.log("index", index)
             console.log("JG", JG)
@@ -685,17 +721,11 @@
             console.log("PFavor", PFavor)
             console.log("Z", Z)
             console.log("rowsTabOrig", rowsTabOrig)
-            //console.log("rowsTabCopy", tablePuntuacionLength)
-
-
-            //console.log($(currentValue)[0].cells[2].children[0].selectedOptions[0].value)
-            //console.log($(currentValue)[0].cells[2].children[0].selectedOptions[0].label)
 
             console.log("Error", positionTablaCopy)
 
             var rowTabPuntuaciones = tablePuntuacion.insertRow(positionTablaCopy);
             for (let celda = 0; celda < tablePuntuacionCell; celda++) {
-                //let (cell + celda) = rowTabPuntuaciones.insertCell(celda);
                 this["cell" + celda] = rowTabPuntuaciones.insertCell(celda);
             }
 
@@ -711,21 +741,19 @@
             cell6.innerHTML = PFavor;
             cell7.innerHTML = PContra;
             cell8.innerHTML = PFavor - PContra;
-            cell9.innerHTML = "EFEC";
-            cell10.innerHTML = "PRO";
+            cell9.innerHTML = parseFloat((JG * 1000) / juego).toFixed(2);
+            cell10.innerHTML = parseFloat(PFavor / juego).toFixed(2);
             cell11.innerHTML = Z;
-            cell12.innerHTML = "PRO2";
-            
+            cell12.innerHTML = 1 + (JG * 2) + ((juego - JG) * (-1)) + (Z + 1) + 6;
+
             positionTablaCopy += 1
             let tablePuntuacionLength = $('#tabla-super-polla-puntaje tbody')[0].rows.length
 
             if (rowsTabOrig == tablePuntuacionLength) {
                 positionTablaCopy = 0
             }
-            
 
         }
-
 
         function posicionesYMesas(tablaRows) {
 
@@ -741,6 +769,29 @@
                     $(value)[0].cells[1].innerHTML = numero + mesa[arrMesa]
                     numero >= 4 ? (numero = 1, arrMesa += 1) : numero += 1
                 }
+            })
+        }
+
+        function numeroYMesa(tablaRows) {
+            const node = document.getElementById("container-players")
+            const line = [];
+
+            while (node.hasChildNodes()) {
+                node.removeChild(node.lastChild);
+            }
+
+            $.each($(tablaRows)[0].rows, function (index, value) {
+                let objLine = { "No": $(value)[0].cells[3].textContent, "table": $(value)[0].cells[1].textContent }
+                line.push(objLine);
+            });
+
+            line.sort((a, b) => (parseFloat(a.No) > parseFloat(b.No)) ? 1 : -1)
+
+            line.map((player) => {
+                $("#container-players").append(`<div class="col col-md-1 container-table-player">
+                    <div class="item-number">${player.No}</div> 
+                    <div class="item-table">${player.table}</div>
+                </div>`)
             })
         }
 
